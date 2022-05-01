@@ -18,6 +18,9 @@ function getSeason(date) {
   if (date) {
 
     if (date && date.getMonth && date.getMonth.call) {
+
+  //    [Symbol.toStringTag]: 'Date'
+
       if (typeof date !== 'object') { console.log('Invalid date!'); throw new Error ("Invalid date!") }
 
       let season = date;
@@ -30,13 +33,13 @@ function getSeason(date) {
       if (season.getMonth() >= 8 && season.getMonth() <= 10) {  console.log('fall'); return 'fall'; }
     }
   } else { 
-    console.log ('hmm!');
+//    console.log ('hmm!');
     throw new Error ('Unable to determine the time of year!'); }
 
 }
 
 
-getSeason();
+// getSeason();
 
 module.exports = {
   getSeason

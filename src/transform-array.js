@@ -42,7 +42,7 @@ function transform(arr) {
 
     if (arr[i] == '--discard-next') {
       if (i == arr.lentgh-1) { result.splice(i, 1)}
-      else result.splice(i, 2)
+      else result.splice(i, 1)
       i--;
     }  
 
@@ -53,11 +53,11 @@ function transform(arr) {
     }  
 
   }
-  console.log(result.join(','));
+ // console.log(result.join(','));
   return result;
 }
 
-transform([1, 2, 3, '--double-next', 1337, '--discard-prev', 4, 5]);
+// transform([1, 2, 3, '--double-next', 1337, '--discard-prev', 4, 5]);
 
 module.exports = {
   transform
