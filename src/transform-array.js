@@ -15,49 +15,37 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 function transform(arr) {
 
-  if (!Array.isArray(arr)) { throw new Error(`'arr' parameter must be an instance of the Array!`)};
+  if (!Array.isArray(arr)) { throw new Error(`'arr' parameter must be an instance of the Array!`);}
 
-  let x = '',
-      y = '',
-      result = arr;
+  let result = [];
 
-  for (i = 0; i <= arr.length; i++) {
+  for (let i = 0; i <= arr.length-1; i++) {
 
-    if (arr[i] == '--double-next') {
-      if (i == arr.length-1) {result.splice(i, 1)}
-      else {
-        y = arr.indexOf(arr[i]) + 1;
-        result.splice(i, 1, y);
+    if (arr[i] === '--discard-next') {
+      i += 2;
+    } 
+    else if (arr[i] === '--discard-prev') {
+      result.pop();
+    } 
+    else if (arr[i] === '--double-next') {
+      if (i !== arr.length-1)
+        result.push(arr[i+1]);
+    } 
+    else if (arr[i] === '--double-prev') {
+      if (i !== 0) {
+        result.push(arr[i-1]);
       }
-    }  
 
-    if (arr[i] == '--double-prev') {
-      if (i == 0) { result.splice(i, 1)}
-      else {
-      y = arr[i-1];
-      result.splice(i, 1, y);
-      
-      }
-    }  
-
-    if (arr[i] == '--discard-next') {
-      if (i == arr.lentgh-1) { result.splice(i, 1)}
-      else result.splice(i, 1)
-      i--;
-    }  
-
-    if (arr[i] == '--discard-prev') {
-      if (i == 0 || arr[i] == 'undefined') { result.splice(i, 1);  i--;}
-      else result.splice(i-1, 2);
-
-    }  
-
-  }
- // console.log(result.join(','));
+    } else {
+      result.push(arr[i]);
+    }
+  } 
+  console.log(result);
   return result;
+
 }
 
-// transform([1, 2, 3, '--double-next', 1337, '--discard-prev', 4, 5]);
+ transform([1, 2, 3, '--double-next', 1337, '--discard-prev', 4, 5]);
 
 module.exports = {
   transform
