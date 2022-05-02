@@ -34,7 +34,6 @@ function isMAC48Address(n) {
 
 }
 
-
 // isMAC48Address('not a MAC-48 address');
 
 module.exports = {
